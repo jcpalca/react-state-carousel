@@ -27,10 +27,12 @@ it("works when you click on the right arrow", function () {
       title="images for testing"
     />
   );
+
   // expect the first image to show, but not the second
   expect(
     container.querySelector('img[alt="testing image 1"]')
   ).toBeInTheDocument();
+
   expect(
     container.querySelector('img[alt="testing image 2"]')
   ).not.toBeInTheDocument();
@@ -58,9 +60,11 @@ it("works when you click the left arrow", function () {
   // move forward in the carousel
   const rightArrow = container.querySelector(".bi-arrow-right-circle");
   fireEvent.click(rightArrow);
+
   // move backward in the carousel
   const leftArrow = container.querySelector(".bi-arrow-left-circle");
   fireEvent.click(leftArrow);
+
   // expect the first image to show, but not the second
   expect(
     container.querySelector('img[alt="testing image 1"]')
@@ -69,7 +73,7 @@ it("works when you click the left arrow", function () {
     container.querySelector('img[alt="testing image 2"]')
   ).not.toBeInTheDocument();
 });
-// create new line
+
 it("hides the left arrow on the first image and hides right arrow on last image",
   function () {
     const { container } = render(
@@ -78,17 +82,21 @@ it("hides the left arrow on the first image and hides right arrow on last image"
         title="images for testing"
       />
     );
+
     const leftArrow = container.querySelector(".bi-arrow-left-circle");
     const rightArrow = container.querySelector(".bi-arrow-right-circle");
+
     // expect the left arrow to not show on the first image
     expect(leftArrow).toHaveClass("hidden");
     expect(rightArrow).not.toHaveClass("hidden");
 
     fireEvent.click(rightArrow);
+
     expect(leftArrow).not.toHaveClass("hidden");
     expect(rightArrow).not.toHaveClass("hidden");
 
     fireEvent.click(rightArrow);
+    
     expect(leftArrow).not.toHaveClass("hidden");
     expect(rightArrow).toHaveClass("hidden");
   });
